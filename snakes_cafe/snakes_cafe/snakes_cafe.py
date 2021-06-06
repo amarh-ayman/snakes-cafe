@@ -39,26 +39,30 @@ Unicorn Tears
 ***********************************
   """
 )
+snake_menu ={'Wings':0,'Cookies':0,'Spring Rolls':0,'Salmon':0
+ ,'Steak':0,'Meat Tornado':0 ,'A Literal Garden':0,'Ice Cream':0 ,'Cake':0,'Pie':0,'Coffee':0,'Tea':0,'Unicorn Tears':0}
 
-snake_menu=('Wings','Cookies','Spring Rolls','Salmon' ,'Steak','Meat Tornado'
-'A Literal Garden','Ice Cream' ,'Cake','Pie','Coffee','Tea','Unicorn Tears')
-order=[]
-user=input().lower().capitalize()
-count=1
+order=set([])
+user=input('> ').title()
 while user :
   if user in snake_menu:
-     print(f'\n** {count} order of {user} have been added to your meal **')
-     count+=1
-     order.append(user)
-  elif user.lower()=='> quit':
+     snake_menu[user]+=1
+     print(f'\n** {snake_menu[user]} order of {user} have been added to your meal **')
+     order.add(user)
+     
+  elif user.lower()=='quit':
         if len(order)>0:
-          string_order=', '.join(order)
-          print(f'\n your complete order are " {string_order} "')
+          print(f'\nyour complete order are : ')
+          totally=0
+          for item in order:
+            print(f'{snake_menu[item]} of {item}')
+            totally+=snake_menu[item]
+        print(f'Totally order\'s are {totally}')    
         break
   else:
-    print(f'\nSORRY,your order not on the menu. please reOrder depend on what exist.\n i suggest on you "{random.choice(snake_menu)}" ;it\'s so Delicious') 
+    print(f'\nSORRY,your order {user} not on the menu. please reOrder depend on what exist.\n i suggest on you "{random.choice(list(snake_menu.keys()))}" ;it\'s so Delicious') 
 
   print('\n***********************************')
 
-  user=input().lower().capitalize()
+  user=input('> ').title()
  
